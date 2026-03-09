@@ -14,7 +14,7 @@ AMBROSIA_IDX = 0
 # ── Chargement unique au démarrage du serveur ──
 print("[Classifier] Chargement du modèle ONNX...")
 _session = ort.InferenceSession(
-    "weights/best.onnx",
+    "best.onnx",
     providers=["CPUExecutionProvider"]
 )
 _input_name = _session.get_inputs()[0].name
