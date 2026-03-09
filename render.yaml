@@ -1,7 +1,8 @@
-services:
+ services:
   - type: web
     name: ragweed-backend
     env: python
+    pythonVersion: "3.11.0"
     buildCommand: pip install -r requirements.txt
     startCommand: gunicorn app:app
     plan: free
