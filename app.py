@@ -3,7 +3,6 @@ from classifier import predict
 from inaturalist import get_species_info, get_nearby_observations
 
 app = Flask(__name__)
-
 CONFIDENCE_THRESHOLD = 0.75
 
 @app.route("/classify", methods=["POST"])
@@ -22,7 +21,7 @@ def classify():
         return jsonify({"error": str(e)}), 500
     if resultat["is_ragweed"]:
         if resultat["confidence"] >= 0.85:
-            resultat["alerte"] = "ÉLEVÉ"
+            resultat["alerte"] = "ELEVE"
         elif resultat["confidence"] >= CONFIDENCE_THRESHOLD:
             resultat["alerte"] = "MOYEN"
         else:
@@ -37,4 +36,9 @@ def classify():
             resultat["observations_proches"] = get_nearby_observations(lat, lng)
     return jsonify(resultat), 200
 
-@app.route("/health",
+@app.route("/health", methods=["GET"])
+def health():
+    return jsonify({"status": "ok", "modele": "YOLOv11n-cls"}), 200
+
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=5000)
