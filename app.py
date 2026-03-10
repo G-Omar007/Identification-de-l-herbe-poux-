@@ -1,4 +1,4 @@
- from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify
 from classifier import predict
 from inaturalist import get_species_info, get_nearby_observations
 
