@@ -36,6 +36,10 @@ def classify():
             resultat["observations_proches"] = get_nearby_observations(lat, lng)
     return jsonify(resultat), 200
 
+@app.route("/", methods=["GET"])
+def index():
+    return jsonify({"status": "ok", "service": "Identification de l'herbe à poux"}), 200
+
 @app.route("/health", methods=["GET"])
 def health():
     return jsonify({"status": "ok", "modele": "YOLOv11n-cls"}), 200
