@@ -42,3 +42,22 @@ def health():
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000)
+# ... tes imports existants ...
+
+app = Flask(__name__)
+
+# ↓ AJOUTER ICI ↓
+@app.route("/", methods=["GET"])
+def index():
+    return jsonify({
+        "service": "Identificateur d'herbe à poux",
+        "routes": {
+            "POST /classify": "Classifier une image",
+            "GET /health": "Statut du service"
+        }
+    }), 200
+
+# tes routes existantes...
+@app.route("/classify", methods=["POST"])
+def classify():
+    ...
